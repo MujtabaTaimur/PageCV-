@@ -10,13 +10,6 @@ const achievements = [
   { event: 'British Cycling National Points', result: '304 Points', category: '2025 Season' }
 ];
 
-const stats = [
-  { label: 'ENDURANCE', value: 92 },
-  { label: 'CONSISTENCY', value: 88 },
-  { label: 'TACTICAL_DECISION', value: 85 },
-  { label: 'PERFORMANCE_OPT', value: 90 }
-];
-
 function AnimatedCounter({ target }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -38,66 +31,43 @@ function AnimatedCounter({ target }) {
   return <motion.span ref={ref}>{display}</motion.span>;
 }
 
-function ProgressBar({ value, label }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-  
-  return (
-    <div ref={ref} className="space-y-2">
-      <div className="flex justify-between text-xs">
-        <span className="text-[#00d4ff] tracking-wider">{label}</span>
-        <span className="text-[#00ff88]">{value}%</span>
-      </div>
-      <div className="h-2 bg-[#1a2a3a] rounded overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={isInView ? { width: `${value}%` } : { width: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="h-full bg-gradient-to-r from-[#00ff88] to-[#00d4ff]"
-        />
-      </div>
-    </div>
-  );
-}
-
 export default function CyclingSection() {
   return (
-    <section className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
+    <section className="system-section">
+      <div className="system-container">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="section-header"
         >
-          <div className="flex items-center gap-4 mb-4">
-            <span className="text-[#00ff88]">■</span>
-            <h2 className="text-2xl md:text-3xl text-[#00d4ff] tracking-wider">
+          <div className="section-title-row">
+            <span className="section-node" aria-hidden="true" />
+            <h2>
               TELEMETRY.dat
             </h2>
-            <div className="flex-1 h-px bg-gradient-to-r from-[#1a2a3a] to-transparent" />
+            <div className="section-rule" />
           </div>
-          <p className="text-[#3a4a5a] text-sm tracking-widest">
+          <p className="section-meta">
             // CYCLING_PERFORMANCE_METRICS
           </p>
         </motion.div>
         
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Achievements */}
+        <div className="system-grid-layout two">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-[#0d1117] border border-[#1a2a3a] rounded-lg overflow-hidden"
+            className="system-panel"
           >
-            <div className="bg-[#161b22] px-4 py-3 border-b border-[#1a2a3a]">
-              <span className="text-[#00ff88] text-sm tracking-wider">RACE_LOG.txt</span>
+            <div className="panel-topline">
+              <span className="mt-green text-sm tracking-wider">RACE_LOG.txt</span>
+              <span className="panel-id">telemetry_feed</span>
             </div>
             
-            <div className="p-4">
+            <div className="card-body py-3">
               {achievements.map((achievement, index) => (
                 <motion.div
                   key={index}
@@ -105,50 +75,43 @@ export default function CyclingSection() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="py-3 border-b border-[#1a2a3a] last:border-0"
+                  className="telemetry-row"
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <p className="text-[#e0e0e0] text-sm">
-                        <span className="text-[#3a4a5a]">{'>'}</span> {achievement.event}
-                      </p>
-                      <p className="text-[#3a4a5a] text-xs mt-1">[{achievement.category}]</p>
-                    </div>
-                    <span className="text-[#00ff88] text-sm font-bold whitespace-nowrap">
-                      {achievement.result}
-                    </span>
+                  <div className="flex-1">
+                    <p className="text-[var(--mt-text)] text-sm leading-relaxed">
+                      <span className="dim-text">{'>'}</span> {achievement.event}
+                    </p>
+                    <p className="dim-text text-xs mt-1">[{achievement.category}]</p>
                   </div>
+                  <span className="mt-green text-sm font-bold whitespace-nowrap">
+                    {achievement.result}
+                  </span>
                 </motion.div>
               ))}
             </div>
           </motion.div>
           
-          {/* Performance Stats */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-[#0d1117] border border-[#1a2a3a] rounded-lg overflow-hidden"
+            className="system-panel"
           >
-            <div className="bg-[#161b22] px-4 py-3 border-b border-[#1a2a3a] flex items-center justify-between">
-              <span className="text-[#00ff88] text-sm tracking-wider">PERFORMANCE_ANALYSIS</span>
-              <span className="text-[#3a4a5a] text-xs animate-pulse">● LIVE</span>
+            <div className="panel-topline">
+              <span className="mt-green text-sm tracking-wider">STATUS</span>
+              <span className="panel-id animate-pulse">● LIVE</span>
             </div>
             
-            <div className="p-6 space-y-6">
-              {stats.map((stat, index) => (
-                <ProgressBar key={index} label={stat.label} value={stat.value} />
-              ))}
-              
-              {/* National Points Counter */}
-              <div className="mt-8 pt-6 border-t border-[#1a2a3a]">
+            <div className="p-6">
+              <div>
                 <div className="text-center">
-                  <p className="text-[#3a4a5a] text-xs tracking-wider mb-2">NATIONAL_POINTS_2025</p>
-                  <div className="text-5xl font-bold text-[#00ff88]">
+                  <p className="mt-cyan text-xs tracking-wider mb-5">TEAM - VC Londres</p>
+                  <p className="dim-text text-xs tracking-wider mb-2">NATIONAL_POINTS_2025</p>
+                  <div className="text-5xl font-bold mt-green glow-green">
                     <AnimatedCounter target={304} />
                   </div>
-                  <p className="text-[#00d4ff] text-xs mt-2">BRITISH CYCLING</p>
+                  <p className="mt-cyan text-xs mt-2">BRITISH CYCLING</p>
                 </div>
               </div>
             </div>

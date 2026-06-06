@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const sections = [
@@ -15,91 +15,131 @@ const sections = [
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      const viewportPoint = window.scrollY + window.innerHeight * 0.35;
+      let current = sections[0];
+
+      for (const section of sections) {
+        const element = document.getElementById(section.id);
+        if (element && element.offsetTop <= viewportPoint) {
+          current = section;
+        }
+      }
+
+      if (current) {
+        setActiveSection(current.id);
+      }
     };
+
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setActiveSection(sectionId);
       setIsOpen(false);
     }
   };
 
   return (
     <>
-      {/* Desktop Navigation */}
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? 'bg-[#0b0f14]/95 backdrop-blur-sm border-b border-[#1a2a3a]' : ''
-        }`}
+        className={`nav-shell ${scrolled ? 'scrolled' : ''} ${isOpen ? 'menu-open' : ''}`}
+        aria-label="Primary navigation"
       >
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <button
-              onClick={() => scrollToSection('hero')}
-              className="text-[#00ff88] font-bold tracking-wider text-sm hover:text-[#00d4ff] transition-colors"
-            >
-              MT_SYSTEMS
-            </button>
+        <div className="nav-inner">
+          <button
+            type="button"
+            onClick={() => scrollToSection('hero')}
+            className="nav-brand"
+          >
+            MT_SYSTEMS
+          </button>
 
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center gap-1">
-              {sections.map((section) => (
-                <button
-                  key={section.id}
-                  onClick={() => scrollToSection(section.id)}
-                  className="px-4 py-2 text-xs text-[#8b949e] hover:text-[#00ff88] transition-colors tracking-wider border border-transparent hover:border-[#1a2a3a] rounded"
-                >
-                  [{section.label}]
-                </button>
-              ))}
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden text-[#00ff88] hover:text-[#00d4ff] transition-colors"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+          <div className="nav-links">
+            {sections.map((section) => (
+              <button
+                key={section.id}
+                type="button"
+                onClick={() => scrollToSection(section.id)}
+                className={`nav-link ${activeSection === section.id ? 'active' : ''}`}
+                aria-current={activeSection === section.id ? 'page' : undefined}
+              >
+                [{section.label}]
+              </button>
+            ))}
           </div>
+
+          <button
+            type="button"
+            onClick={() => setIsOpen(!isOpen)}
+            className="mobile-toggle"
+            aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
+          >
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </motion.nav>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, x: '100%' }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: '100%' }}
-          className="fixed inset-0 z-40 md:hidden bg-[#0b0f14]/98 backdrop-blur-sm"
-        >
-          <div className="flex flex-col items-center justify-center h-full gap-6">
-            {sections.map((section, index) => (
-              <motion.button
-                key={section.id}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
-                onClick={() => scrollToSection(section.id)}
-                className="text-xl text-[#8b949e] hover:text-[#00ff88] transition-colors tracking-wider"
-              >
-                <span className="text-[#3a4a5a]">{'>'}</span> {section.label}
-              </motion.button>
-            ))}
-          </div>
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="mobile-menu"
+            id="mobile-navigation"
+          >
+            <div className="mobile-menu-inner">
+              {sections.map((section, index) => (
+                <motion.button
+                  key={section.id}
+                  type="button"
+                  initial={{ opacity: 0, x: 12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.035 }}
+                  onClick={() => scrollToSection(section.id)}
+                  className={`mobile-link ${activeSection === section.id ? 'active' : ''}`}
+                  aria-current={activeSection === section.id ? 'page' : undefined}
+                >
+                  <span className="mobile-link-prefix" aria-hidden="true">{'>'}</span>
+                  <span>{section.label}</span>
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

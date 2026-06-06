@@ -28,82 +28,61 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center px-6 py-20">
+    <section className="hero-section">
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="text-center max-w-4xl"
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="hero-shell bracket-frame"
       >
-        {/* Terminal Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
+        <motion.p
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="mb-8 text-[#3a4a5a] text-sm tracking-widest"
+          transition={{ delay: 0.15 }}
+          className="hero-meta"
         >
-          ╔══════════════════════════════════════════╗
-        </motion.div>
-        
-        {/* Name */}
-        <motion.h1 
-          initial={{ opacity: 0, scale: 0.9 }}
+          MT_SYSTEMS
+        </motion.p>
+
+        <motion.h1
+          initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6"
+          transition={{ delay: 0.3, duration: 0.65 }}
+          className="hero-title"
         >
-          <span className="text-[#00ff88]">MUJTABA</span>
-          <br />
-          <span className="text-[#00d4ff]">TAIMUR</span>
+          <span className="hero-title-accent">MUJTABA</span>
+          <span>TAIMUR</span>
         </motion.h1>
-        
-        {/* Subtitle */}
-        <motion.p 
+
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="text-[#00d4ff] text-sm md:text-base tracking-[0.3em] uppercase mb-12"
+          transition={{ delay: 0.65 }}
+          className="hero-role"
         >
           Engineering Enthusiast | Competitive Cyclist | Software Developer
         </motion.p>
-        
-        {/* Typing Effect */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="bg-[#0d1117] border border-[#1a2a3a] rounded px-6 py-4 inline-block"
-        >
-          <span className="text-[#3a4a5a]">{'>'} </span>
-          <span className="text-[#00ff88]">{displayText}</span>
-          <span className={`text-[#00ff88] ${showCursor ? 'opacity-100' : 'opacity-0'}`}>█</span>
-        </motion.div>
-        
-        {/* Terminal Footer */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.4 }}
-          className="mt-8 text-[#3a4a5a] text-sm tracking-widest"
+          transition={{ delay: 0.9 }}
+          className="terminal-prompt"
+          aria-label={fullText}
         >
-          ╚══════════════════════════════════════════╝
+          <span className="terminal-user">mt_systems:~$</span>
+          <span className="terminal-text">{displayText}</span>
+          <span className={`terminal-cursor ${showCursor ? 'opacity-100' : 'opacity-0'}`}>█</span>
         </motion.div>
-        
-        {/* Scroll Indicator */}
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-          className="mt-16"
+          transition={{ delay: 1.4 }}
+          className="scroll-indicator"
         >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-            className="text-[#3a4a5a] text-xs tracking-widest"
-          >
-            [ SCROLL ]
-            <div className="mt-2 text-[#00ff88]">▼</div>
-          </motion.div>
+          [SCROLL]
+          <span aria-hidden="true" />
         </motion.div>
       </motion.div>
     </section>

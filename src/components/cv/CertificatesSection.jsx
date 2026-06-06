@@ -2,13 +2,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const companyMeta = {
-  'SAP':                        { color: '#f0a030', initials: 'SAP' },
-  'IBM':                        { color: '#1f70c1', initials: 'IBM' },
-  'Microsoft':                  { color: '#00a4ef', initials: 'MS'  },
-  'Rolls-Royce':                { color: '#c9a84c', initials: 'RR'  },
-  'IChemE':                     { color: '#00c896', initials: 'ICE' },
-  'Siemens':                    { color: '#00bedc', initials: 'SIE' },
-  'University of Huddersfield': { color: '#a855f7', initials: 'UoH' },
+  'SAP':                        { tone: 'green', initials: 'SAP' },
+  'IBM':                        { tone: 'cyan', initials: 'IBM' },
+  'Microsoft':                  { tone: 'cyan', initials: 'MS'  },
+  'Rolls-Royce':                { tone: 'green', initials: 'RR'  },
+  'IChemE':                     { tone: 'green', initials: 'ICE' },
+  'Siemens':                    { tone: 'cyan', initials: 'SIE' },
+  'University of Huddersfield': { tone: 'cyan', initials: 'UoH' },
+  'Google':                     { tone: 'green', initials: 'GGL' },
 };
 
 const certificates = [
@@ -24,37 +25,36 @@ const certificates = [
   { id: 'cert_010', title: 'Siemens: Engineering',                                     issuer: 'Siemens'                    },
   { id: 'cert_011', title: 'Motorsport Engineering with Luke Barron',                  issuer: 'University of Huddersfield' },
   { id: 'cert_012', title: 'Rolls-Royce: Fitter/Machinist',                            issuer: 'Rolls-Royce'                },
+  { id: 'cert_013', title: 'Foundations of Cybersecurity',                             issuer: 'Google'                     },
 ];
 
 export default function CertificatesSection() {
   return (
-    <section className="py-24 px-6 bg-[#0a0e12]">
-      <div className="max-w-6xl mx-auto">
+    <section className="system-section">
+      <div className="system-container">
 
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="section-header"
         >
-          <div className="flex items-center gap-4 mb-4">
-            <span className="text-[#00ff88]">■</span>
-            <h2 className="text-2xl md:text-3xl text-[#00d4ff] tracking-wider">
+          <div className="section-title-row">
+            <span className="section-node" aria-hidden="true" />
+            <h2>
               CERTIFICATES.log
             </h2>
-            <div className="flex-1 h-px bg-gradient-to-r from-[#1a2a3a] to-transparent" />
+            <div className="section-rule" />
           </div>
-          <p className="text-[#3a4a5a] text-sm tracking-widest">
+          <p className="section-meta">
             // PROFESSIONAL_CREDENTIALS
           </p>
         </motion.div>
 
-        {/* Certificates Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="system-grid-layout two">
           {certificates.map((cert, index) => {
-            const meta = companyMeta[cert.issuer] ?? { color: '#00ff88', initials: '??' };
+            const meta = companyMeta[cert.issuer] ?? { tone: 'green', initials: '??' };
 
             return (
               <motion.div
@@ -64,37 +64,29 @@ export default function CertificatesSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 onClick={() => window.open('https://github.com/MujtabaTaimur/CS_Course', '_blank')}
-                className="cursor-pointer bg-[#0d1117] border border-[#1a2a3a] rounded-lg overflow-hidden hover:border-[#00ff88] transition-colors duration-300"
+                className="system-panel clickable"
               >
-                {/* Terminal Header */}
-                <div className="bg-[#161b22] px-4 py-2 border-b border-[#1a2a3a] flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#ff5f56]" />
-                    <span className="w-2 h-2 rounded-full bg-[#ffbd2e]" />
-                    <span className="w-2 h-2 rounded-full bg-[#27c93f]" />
+                <div className="panel-topline">
+                  <div className="panel-dots" aria-hidden="true">
+                    <span className="panel-dot" />
+                    <span className="panel-dot" />
+                    <span className="panel-dot" />
                   </div>
-                  <span className="text-[#3a4a5a] text-xs">{cert.id}</span>
+                  <span className="panel-id">{cert.id}</span>
                 </div>
 
-                {/* Content */}
-                <div className="p-6">
+                <div className="card-body">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-[#00ff88] text-base font-bold tracking-wider leading-snug">
+                      <h3 className="card-title text-base leading-snug">
                         {cert.title}
                       </h3>
-                      <p className="text-[#00d4ff] text-xs tracking-wider mt-2">
+                      <p className="card-subtitle mt-2">
                         [{cert.issuer}]
                       </p>
                     </div>
-                    {/* Company badge */}
                     <span
-                      className="flex-shrink-0 text-[10px] font-extrabold tracking-widest px-2 py-1 rounded mt-0.5"
-                      style={{
-                        color: meta.color,
-                        backgroundColor: `${meta.color}18`,
-                        border: `1px solid ${meta.color}40`,
-                      }}
+                      className={`issuer-chip flex-shrink-0 mt-0.5 ${meta.tone === 'cyan' ? 'level-chip' : ''}`}
                     >
                       {meta.initials}
                     </span>

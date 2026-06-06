@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navigation from '@/components/cv/Navigation';
-import HeroSection from '@/components/cv/HeroSection';
+import LandscapeHeroSection from '@/components/cv/LandscapeHeroSection';
 import AboutSection from '@/components/cv/AboutSection';
 import ProjectsSection from '@/components/cv/ProjectsSection';
 import CyclingSection from '@/components/cv/CyclingSection';
@@ -20,25 +20,21 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0b0f14] text-[#e0e0e0] font-mono overflow-x-hidden">
+    <div className="mt-app landscape-page font-mono">
       <Navigation />
-      
-      {/* Blueprint Grid Background with Parallax */}
+
       <div 
-        className="fixed inset-0 pointer-events-none opacity-[0.03]"
-        style={{
-          backgroundImage: `
-            linear-gradient(#00ff88 1px, transparent 1px),
-            linear-gradient(90deg, #00ff88 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px',
-          transform: `translateY(${scrollY * 0.3}px)`
-        }}
+        className="system-grid"
+        style={{ transform: `translateY(${scrollY * 0.18}px)` }}
+        aria-hidden="true"
       />
-      
+      <div className="system-vignette" aria-hidden="true" />
+      <div className="system-depth" aria-hidden="true" />
+      <div className="system-scanlines" aria-hidden="true" />
+
       <div className="relative z-10">
         <div id="hero">
-          <HeroSection />
+          <LandscapeHeroSection />
         </div>
         <div id="about">
           <AboutSection />
@@ -59,14 +55,6 @@ export default function Home() {
           <ContactSection />
         </div>
       </div>
-      
-      {/* Scanline Effect */}
-      <div 
-        className="fixed inset-0 pointer-events-none opacity-[0.02]"
-        style={{
-          background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,136,0.03) 2px, rgba(0,255,136,0.03) 4px)'
-        }}
-      />
     </div>
   );
 }
