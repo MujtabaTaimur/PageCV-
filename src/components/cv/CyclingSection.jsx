@@ -1,35 +1,13 @@
-import React, { useRef } from 'react';
-import { motion, useInView, useSpring, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const achievements = [
   { event: 'National 10 Mile Time Trials', result: '1st - 21:59', category: 'National' },
   { event: 'European Junior Cycling Tour Assen', result: '4th Overall', category: 'International' },
   { event: 'National Youth Omnium Finals', result: '2nd Place', category: 'National' },
   { event: 'National Youth Circuit Championships', result: '2nd Place', category: 'National' },
-  { event: 'Youth Tour of Scotland', result: '3rd Overall', category: 'International' },
-  { event: 'British Cycling National Points', result: '304 Points', category: '2025 Season' }
+  { event: 'Youth Tour of Scotland', result: '3rd Overall', category: 'International' }
 ];
-
-function AnimatedCounter({ target }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
-  const spring = useSpring(0, { 
-    stiffness: 50, 
-    damping: 30,
-    restDelta: 0.5 
-  });
-  
-  const display = useTransform(spring, (current) => Math.floor(current));
-  
-  React.useEffect(() => {
-    if (isInView) {
-      spring.set(target);
-    }
-  }, [isInView, spring, target]);
-  
-  return <motion.span ref={ref}>{display}</motion.span>;
-}
 
 export default function CyclingSection() {
   return (
@@ -45,12 +23,12 @@ export default function CyclingSection() {
           <div className="section-title-row">
             <span className="section-node" aria-hidden="true" />
             <h2>
-              TELEMETRY.dat
+              ACHIEVEMENTS.log
             </h2>
             <div className="section-rule" />
           </div>
           <p className="section-meta">
-            // CYCLING_PERFORMANCE_METRICS
+            // PERFORMANCE_AND_DISCIPLINE_SIGNAL
           </p>
         </motion.div>
         
@@ -99,20 +77,47 @@ export default function CyclingSection() {
             className="system-panel"
           >
             <div className="panel-topline">
-              <span className="mt-green text-sm tracking-wider">STATUS</span>
-              <span className="panel-id animate-pulse">● LIVE</span>
+              <span className="mt-green text-sm tracking-wider">TRANSFER.log</span>
+              <span className="panel-id">engineering_signal</span>
             </div>
             
-            <div className="p-6">
-              <div>
-                <div className="text-center">
-                  <p className="mt-cyan text-xs tracking-wider mb-5">TEAM - VC Londres</p>
-                  <p className="dim-text text-xs tracking-wider mb-2">NATIONAL_POINTS_2025</p>
-                  <div className="text-5xl font-bold mt-green glow-green">
-                    <AnimatedCounter target={304} />
-                  </div>
-                  <p className="mt-cyan text-xs mt-2">BRITISH CYCLING</p>
+            <div className="card-body">
+              <div className="card-title-row">
+                <div>
+                  <h3 className="card-title">PERFORMANCE_SYSTEM</h3>
+                  <p className="card-subtitle">[Sport discipline to engineering practice]</p>
                 </div>
+              </div>
+              <p className="muted-text text-sm leading-relaxed mb-2">
+                Cycling has trained the same habits engineering teams need: measure the system, find the bottleneck, test a change, and execute under pressure.
+              </p>
+              <div className="transfer-rows">
+                <div className="telemetry-row">
+                  <div>
+                    <p className="text-[var(--mt-text)] text-sm leading-relaxed"><span className="dim-text">{'>'}</span> Measure</p>
+                    <p className="dim-text text-xs mt-1">[training data, feedback, repeat testing]</p>
+                  </div>
+                  <span className="mt-green text-sm font-bold whitespace-nowrap">DATA</span>
+                </div>
+                <div className="telemetry-row">
+                  <div>
+                    <p className="text-[var(--mt-text)] text-sm leading-relaxed"><span className="dim-text">{'>'}</span> Improve</p>
+                    <p className="dim-text text-xs mt-1">[small changes, clear result checks]</p>
+                  </div>
+                  <span className="mt-green text-sm font-bold whitespace-nowrap">ITERATE</span>
+                </div>
+                <div className="telemetry-row">
+                  <div>
+                    <p className="text-[var(--mt-text)] text-sm leading-relaxed"><span className="dim-text">{'>'}</span> Execute</p>
+                    <p className="dim-text text-xs mt-1">[calm decisions under pressure]</p>
+                  </div>
+                  <span className="mt-green text-sm font-bold whitespace-nowrap">DELIVER</span>
+                </div>
+              </div>
+              <div className="tag-list mt-5">
+                <span className="system-tag">Training analytics</span>
+                <span className="system-tag">Marginal gains</span>
+                <span className="system-tag">System discipline</span>
               </div>
             </div>
           </motion.div>

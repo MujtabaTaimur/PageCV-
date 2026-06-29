@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Briefcase } from 'lucide-react';
+import { CalendarDays, Github, Mail, MapPin, Phone } from 'lucide-react';
+
+const emailAddress = 'dev@mtaimur.de';
+const phoneNumber = '+44 7787 022590';
 
 export default function ContactSection() {
   const [showCursor, setShowCursor] = useState(true);
@@ -50,9 +53,47 @@ export default function ContactSection() {
           
           <div className="p-6 space-y-4">
             <div className="dim-text text-xs mb-6 tracking-[0.08em]">
-              Initializing contact protocol...
+              Fastest route for work experience enquiries:
               <span className="mt-green ml-2">OK</span>
             </div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.05 }}
+              className="contact-row"
+            >
+              <Mail size={18} className="mt-green flex-shrink-0" />
+              <div>
+                <span className="dim-text">EMAIL:</span>
+                <a 
+                  href={`mailto:${emailAddress}?subject=Work%20experience%20placement`}
+                  className="ml-2"
+                >
+                  {emailAddress}
+                </a>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.08 }}
+              className="contact-row"
+            >
+              <Phone size={18} className="mt-cyan flex-shrink-0" />
+              <div>
+                <span className="dim-text">PHONE:</span>
+                <a 
+                  href="tel:+447787022590"
+                  className="ml-2"
+                >
+                  {phoneNumber}
+                </a>
+              </div>
+            </motion.div>
             
             <motion.div
               initial={{ opacity: 0, x: -10 }}
@@ -74,20 +115,32 @@ export default function ContactSection() {
                 </a>
               </div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.25 }}
               className="contact-row"
             >
-              <Briefcase size={18} className="mt-green flex-shrink-0" />
+              <MapPin size={18} className="mt-cyan flex-shrink-0" />
               <div>
-                <span className="dim-text">STATUS:</span>
-                <span className="mt-green ml-2 animate-pulse">
-                  ● Open to Work Experience Opportunities
-                </span>
+                <span className="dim-text">LOCATION:</span>
+                <span className="ml-2">London, UK</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.35 }}
+              className="contact-row"
+            >
+              <CalendarDays size={18} className="mt-cyan flex-shrink-0" />
+              <div>
+                <span className="dim-text">AVAILABILITY:</span>
+                <span className="ml-2">Week Beginning 6th July 2026</span>
               </div>
             </motion.div>
             
@@ -113,7 +166,7 @@ export default function ContactSection() {
         >
           <div className="footer-rule mb-4" />
           <p className="dim-text text-xs">
-            SYSTEM_BUILD: 2025 | ENGINEERING PORTFOLIO
+            SYSTEM_BUILD: 2026 | WORK EXPERIENCE PORTFOLIO
           </p>
           <p className="mt-green text-xs mt-2 tracking-wider">
             "PRECISION. PERFORMANCE. EXCELLENCE."

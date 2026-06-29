@@ -1,0 +1,131 @@
+.nav-brand,
+.nav-link,
+.mobile-link,
+.system-button {
+  text-decoration: none;
+}
+
+.mobile-menu.is-closed {
+  display: none;
+}
+
+.mobile-menu.is-open {
+  display: block;
+}
+
+.menu-icon {
+  color: var(--mt-green);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.candidate-logo .landscape-logo-line {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  white-space: normal;
+}
+
+.candidate-first,
+.candidate-last {
+  display: block;
+  color: var(--mt-text);
+  font-size: clamp(3.4rem, 6.3vw, 6.4rem);
+  line-height: 0.86;
+  letter-spacing: 0;
+  text-shadow:
+    0 0 34px rgba(242, 245, 248, 0.16),
+    0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.candidate-last {
+  color: var(--mt-green);
+  text-shadow:
+    0 0 32px rgba(0, 255, 136, 0.22),
+    0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.candidate-logo + .landscape-id-panel {
+  bottom: 17.5%;
+  width: min(720px, 100%);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.hero-action.primary {
+  border-color: rgba(0, 255, 136, 0.42);
+  background: rgba(0, 255, 136, 0.1);
+  color: var(--mt-green);
+}
+
+.status-line {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(150, 170, 190, 0.16);
+  color: var(--mt-dim);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.transfer-rows {
+  margin-top: 12px;
+}
+
+.system-button.disabled {
+  cursor: default;
+  border-color: rgba(150, 170, 190, 0.16);
+  background: rgba(150, 170, 190, 0.045);
+  color: var(--mt-dim);
+}
+
+.system-button.disabled:hover {
+  border-color: rgba(150, 170, 190, 0.16);
+  background: rgba(150, 170, 190, 0.045);
+  color: var(--mt-dim);
+  box-shadow: none;
+}
+
+@media (max-width: 767px) {
+  .candidate-logo .landscape-logo-line {
+    width: min(21rem, 100%);
+    flex-wrap: nowrap;
+    gap: 0.08rem;
+  }
+
+  .landscape-logo {
+    top: 30%;
+  }
+
+  .candidate-first,
+  .candidate-last {
+    font-size: clamp(3.08rem, 14.2vw, 4.45rem);
+    line-height: 0.88;
+  }
+
+  .candidate-logo + .landscape-id-panel {
+    bottom: 23%;
+    width: min(21rem, 86%);
+  }
+
+  .hero-actions {
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .hero-action {
+    min-height: 34px;
+    padding: 8px 10px;
+    font-size: 0.65rem;
+    letter-spacing: 0.075em;
+  }
+
+  .landscape-hud {
+    bottom: 10%;
+  }
+}

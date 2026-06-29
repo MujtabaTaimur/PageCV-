@@ -1,4 +1,7 @@
 import { motion } from 'framer-motion';
+import { Github, Mail } from 'lucide-react';
+
+const emailAddress = 'dev@mtaimur.de';
 
 export default function LandscapeHeroSection() {
   return (
@@ -68,20 +71,18 @@ export default function LandscapeHeroSection() {
             transition={{ delay: 0.15 }}
             className="landscape-kicker"
           >
-            MT_SYSTEMS
+            WORK EXPERIENCE // TECH + ENGINEERING
           </motion.p>
 
           <motion.h1
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.65 }}
-            className="landscape-logo"
+            className="landscape-logo candidate-logo"
           >
             <span className="landscape-logo-line">
-              <span className="landscape-logo-mt">MT</span>
-              <span className="landscape-logo-underscore" aria-hidden="true" />
-              <span className="landscape-logo-systems">SYSTEMS</span>
-              <span className="landscape-logo-dash" aria-hidden="true" />
+              <span className="candidate-first">MUJTABA</span>
+              <span className="candidate-last">TAIMUR</span>
             </span>
           </motion.h1>
 
@@ -91,11 +92,25 @@ export default function LandscapeHeroSection() {
             transition={{ delay: 0.55 }}
             className="landscape-id-panel"
           >
-            <p className="panel-id">ENGINEER ID // MT-001</p>
-            <p className="landscape-name">MUJTABA TAIMUR</p>
+            <p className="panel-id">YEAR 10 // LONDON // WEEK BEGINNING 6TH JULY 2026</p>
+            <p className="landscape-name">Software, AI systems, hardware and performance analytics</p>
             <p className="landscape-role">
-              Engineering Enthusiast | Competitive Cyclist | Software Developer
+              I write apps, automate workflows, experiment with servers, and turn data into useful tools. I am seeking a short tech or engineering work experience placement.
             </p>
+            <div className="hero-actions" aria-label="Primary actions">
+              <a className="system-button hero-action primary" href={`mailto:${emailAddress}?subject=Work%20experience%20placement`}>
+                <span>[</span>
+                <Mail size={13} />
+                <span>EMAIL</span>
+                <span>]</span>
+              </a>
+              <a className="system-button hero-action" href="https://github.com/MujtabaTaimur" target="_blank" rel="noopener noreferrer">
+                <span>[</span>
+                <Github size={13} />
+                <span>GITHUB</span>
+                <span>]</span>
+              </a>
+            </div>
           </motion.div>
 
         </div>
@@ -117,11 +132,11 @@ export default function LandscapeHeroSection() {
 
           <div className="landscape-hud-body">
             <div className="landscape-data-row">
-              <span>DISCOVER</span>
+              <span>APPS/AUTOMATION</span>
               <span>//</span>
-              <span>ANALYZE</span>
+              <span>SERVER/HOMELAB</span>
               <span>//</span>
-              <span>APPLY</span>
+              <span>NATIONAL CYCLIST</span>
             </div>
           </div>
         </motion.aside>

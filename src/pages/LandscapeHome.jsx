@@ -4,7 +4,6 @@ import LandscapeHeroSection from '@/components/cv/LandscapeHeroSection';
 import AboutSection from '@/components/cv/AboutSection';
 import ProjectsSection from '@/components/cv/ProjectsSection';
 import CyclingSection from '@/components/cv/CyclingSection';
-import SkillsSection from '@/components/cv/SkillsSection';
 import CertificatesSection from '@/components/cv/CertificatesSection';
 import ContactSection from '@/components/cv/ContactSection';
 
@@ -44,9 +43,6 @@ export default function LandscapeHome() {
         </div>
         <div id="cycling">
           <CyclingSection />
-        </div>
-        <div id="skills">
-          <SkillsSection />
         </div>
         <div id="certificates">
           <CertificatesSection />

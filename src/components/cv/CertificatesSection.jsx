@@ -20,10 +20,7 @@ const certificates = [
   { id: 'cert_005', title: 'Introduction to Software Engineering',                     issuer: 'IBM'                        },
   { id: 'cert_006', title: 'Introduction to HTML, CSS & JavaScript',                   issuer: 'IBM'                        },
   { id: 'cert_007', title: 'Aerospace Engineer',                                       issuer: 'Rolls-Royce'                },
-  { id: 'cert_008', title: 'Future-Ready Skills',                                      issuer: 'Rolls-Royce'                },
-  { id: 'cert_009', title: 'IChemE Sprint: Process Engineering in the Energy Sector',  issuer: 'IChemE'                     },
   { id: 'cert_010', title: 'Siemens: Engineering',                                     issuer: 'Siemens'                    },
-  { id: 'cert_011', title: 'Motorsport Engineering with Luke Barron',                  issuer: 'University of Huddersfield' },
   { id: 'cert_012', title: 'Rolls-Royce: Fitter/Machinist',                            issuer: 'Rolls-Royce'                },
   { id: 'cert_013', title: 'Foundations of Cybersecurity',                             issuer: 'Google'                     },
 ];

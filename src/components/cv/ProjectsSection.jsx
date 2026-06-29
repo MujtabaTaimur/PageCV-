@@ -6,34 +6,50 @@ const projects = [
   {
     id: 'proj_001',
     title: 'AEROSCOPE_V2',
-    tech: 'React & Leaflet',
-    description: 'Real-time flight tracking app inspired by FlightRadar24, built with React, TypeScript, Vite, and Tailwind CSS, using Leaflet for interactive maps and the OpenSky Network API for live flight data.',
+    tech: 'React, TypeScript, Leaflet, OpenSky API',
+    description: 'Displays live aircraft positions on an interactive Leaflet map using OpenSky Network data. The interface includes flight markers, map controls, responsive layout, loading states, and frontend updates from API responses.',
     status: 'OPERATIONAL',
     repoUrl: 'https://github.com/MujtabaTaimur/Aeroscope-v2-'
   },
   {
     id: 'proj_002',
     title: 'AI_CHATBOT',
-    tech: 'PyTorch & NLP',
-    description: 'Natural language processing system with machine learning capabilities for intelligent conversation handling.',
+    tech: 'Python, PyTorch, NLTK',
+    description: 'PyTorch intent-classification chatbot with NLTK preprocessing, tokenization, lemmatization, bag-of-words vector generation, model training, and inference against a custom intents dataset.',
     status: 'IN_DEVELOPMENT',
-    repoUrl: 'https://github.com/MujtabaTaimur'
+    repoUrl: 'https://github.com/MujtabaTaimur/AI-ChatBot-Pytorch-'
   },
   {
     id: 'proj_003',
-    title: 'SCIENTIFIC_CALC',
-    tech: 'Python',
-    description: 'Advanced mathematical computation tool supporting complex scientific and engineering calculations.',
+    title: 'ThermostatDesign',
+    tech: 'HTML & CSS',
+    description: 'Single-page thermostat interface built with HTML and CSS. The UI presents temperature controls, visual state changes, structured layout, responsive styling, and animated interface details.',
     status: 'OPERATIONAL',
-    repoUrl: 'https://github.com/MujtabaTaimur'
+    repoUrl: 'https://github.com/MujtabaTaimur/ThermostatDesign'
   },
   {
     id: 'proj_004',
-    title: 'ThermostatDesign',
-    tech: 'HTML & CSS',
-    description: 'Front-end course project that showcases an interactive thermostat user interface built using HTML and CSS. The project focuses on clean layout design, visual styling, and engaging user interaction, including animated elements such as a dinosaur and rocket to enhance the user experience.',
-    status: 'OPERATIONAL',
-    repoUrl: 'https://github.com/MujtabaTaimur'
+    title: 'SERVER_HOMELAB',
+    tech: 'Linux, networking, self-hosting',
+    description: 'Server and homelab environment for experimenting with Linux services, networking, SSH access, deployment workflows, automation scripts, and self-hosted tools.',
+    status: 'IN_PROGRESS',
+    repoUrl: null
+  },
+  {
+    id: 'proj_005',
+    title: 'TRAINING_ANALYTICS',
+    tech: 'Data, performance, dashboards',
+    description: 'Training analytics dashboard concept for cycling performance data, structured training logs, metric tracking, comparison views, and feedback loops for analysing progress over time.',
+    status: 'IN_PROGRESS',
+    repoUrl: null
+  },
+  {
+    id: 'proj_006',
+    title: 'INSTAMATH',
+    tech: 'Swift, OCR, AI concept',
+    description: 'Swift app prototype for photo-based maths input, OCR workflow exploration, question parsing, and AI-assisted explanation screens for step-by-step learning.',
+    status: 'IN_DEVELOPMENT',
+    repoUrl: 'https://github.com/MujtabaTaimur/InstaMath'
   }
 ];
 
@@ -98,17 +114,25 @@ export default function ProjectsSection() {
                   {project.description}
                 </p>
                 
-                <a
-                  href={project.repoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="system-button"
-                >
-                  <span>[</span>
-                  <span>VIEW_REPOSITORY</span>
-                  <ExternalLink size={12} />
-                  <span>]</span>
-                </a>
+                {project.repoUrl ? (
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="system-button"
+                  >
+                    <span>[</span>
+                    <span>VIEW_REPOSITORY</span>
+                    <ExternalLink size={12} />
+                    <span>]</span>
+                  </a>
+                ) : (
+                  <span className="system-button disabled">
+                    <span>[</span>
+                    <span>CASE_STUDY_PENDING</span>
+                    <span>]</span>
+                  </span>
+                )}
               </div>
             </motion.div>
           ))}

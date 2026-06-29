@@ -42,30 +42,29 @@ export default function AboutSection() {
 
           <div className="card-body system-copy">
             <p>
-              <span className="mt-green">{'>'}</span> Year 10 student pursuing{' '}
+              <span className="mt-green">{'>'}</span> Year 10 student in London pursuing{' '}
               <span className="mt-cyan">AQA Higher Sciences</span>,{' '}
               <span className="mt-cyan">Edexcel Maths Higher</span>, and{' '}
-              <span className="mt-cyan">OCR Computer Science</span>, with a focused 
-              interest in engineering and technical problem-solving.
+              <span className="mt-cyan">OCR Computer Science</span>. Currently seeking a 
+              short work experience placement with a technology, engineering, AI, hardware, or startup team.
             </p>
             
             <p>
-              <span className="mt-green">{'>'}</span> Passionate about understanding{' '}
-              <span className="mt-green">complex systems</span>,{' '}
-              <span className="mt-green">mechanical engineering</span>, and{' '}
-              <span className="mt-green">system optimisation</span>—driven by 
-              curiosity about how things work.
+              <span className="mt-green">{'>'}</span> I learn by building: web apps, 
+              AI tools, automation scripts, server and homelab projects, and 
+              training analytics systems that connect sport, data, and performance.
             </p>
             
             <p>
-              <span className="mt-green">{'>'}</span> Combining technical curiosity with 
-              competitive athletics has taught me that excellence requires both{' '}
+              <span className="mt-green">{'>'}</span> Competitive cycling at national and 
+              international level has taught me that useful engineering needs both{' '}
               <span className="mt-cyan">analytical precision</span> and{' '}
-              <span className="mt-cyan">disciplined execution</span>.
+              <span className="mt-cyan">disciplined execution</span>: measure carefully, 
+              improve quickly, and do the hard work consistently.
             </p>
 
             <div className="mt-6 pt-4 border-t border-[rgba(150,170,190,0.16)] dim-text text-xs tracking-[0.08em]">
-              STATUS: Ready for engineering challenges
+              STATUS: Week Beginning 6th July 2026
             </div>
           </div>
         </motion.div>
